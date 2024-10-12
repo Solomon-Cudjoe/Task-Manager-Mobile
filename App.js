@@ -1,20 +1,88 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
+import Home from "./Screens/Home";
+import Profile from "./Screens/Profile";
+import TaskForm from "./Screens/TaskForm";
+import Notifications from "./Screens/Notifications";
+import Calendar from "./Screens/Calendar";
 export default function App() {
+  const Tab = createBottomTabNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar backgroundColor="#6C63FF" style="light" />
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarLabelPosition: "below-icon",
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: "#6C63FF",
+            headerShown: false,
+          }}
+        >
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="list-outline" size={26} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Login"
+            component={Calendar}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons
+                  name="calendar-number-outline"
+                  size={26}
+                  color={color}
+                />
+              ),
+            }}
+          />
+
+          <Tab.Screen
+            name="New Task"
+            component={TaskForm}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons
+                  name="add-circle"
+                  size={60}
+                  color={color}
+                  style={{ marginTop: -50 }}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={Profile}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="person-outline" size={26} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Notifications"
+            component={Notifications}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons
+                  name="notifications-outline"
+                  size={26}
+                  color={color}
+                />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
