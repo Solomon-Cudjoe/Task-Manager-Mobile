@@ -66,8 +66,8 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Profile"
-            component={Profile}
+            name="Stack"
+            component={AppStack}
             options={{
               tabBarIcon: ({ color }) => (
                 <Ionicons name="person-outline" size={26} color={color} />

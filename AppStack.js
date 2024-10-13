@@ -5,14 +5,30 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "./Screens/Login";
 import Signup from "./Screens/Signup";
+import Profile from "./Screens/Profile";
 
 const AppStack = () => {
   const Stack = createNativeStackNavigator();
 
-  <Stack.Navigator>
-    <Stack.Screen name="Login" component={Login} options={{}} />
-    <Stack.Screen name="Signup" component={Signup} options={{}} />
-  </Stack.Navigator>;
+  return (
+    <Stack.Navigator initialRouteName="Profile">
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen name="Signup" component={Signup} options={{}} />
+    </Stack.Navigator>
+  );
 };
 
 const styles = StyleSheet.create({});

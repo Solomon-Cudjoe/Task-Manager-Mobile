@@ -3,13 +3,17 @@ import { StyleSheet, View, Text, SafeAreaView, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Profile = () => {
+  const logoutHandler = () => {
+    console.log("Pressed");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.icon}>
         <Ionicons name="person" size={60} color="#ccc" />
       </View>
 
-      <Pressable style={styles.logoutBtn}>
+      <Pressable style={styles.logoutBtn} onPress={logoutHandler}>
         <Ionicons
           name="exit"
           style={{ marginHorizontal: 10 }}

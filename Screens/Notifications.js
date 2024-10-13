@@ -6,10 +6,7 @@ const Notifications = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View>
         <Text>Notifications Screen</Text>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate("Login", { screen: "Login" })}
-        />
+        <Button title="Login" onPress={() => navigation.navigate("Login")} />
       </View>
     </SafeAreaView>
   );
