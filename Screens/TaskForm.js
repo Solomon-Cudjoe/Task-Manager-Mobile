@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
   SafeAreaView,
   TextInput,
-  Button,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
-// import Ionicons from "@expo/vector-icons/Ionicons";
+
+import { Picker } from "@react-native-picker/picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const TaskForm = () => {
+  const [priority, setPriority] = useState("high");
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
+
+  const toggleDatePicker = () => {
+    setShowPicker(!showPicker);
+  };
+
+  const onChange = ({ type }, selectedDate) => {
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+    setShowPicker(false); // Close the picker after selection
+  };
+
+  // Format date to display it in the TextInput
+  const getFormattedDate = (date) => {
+    let day = date.getDate();
+    let month = date.getMonth() + 1; // Months are zero-based
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.taskHeader}>Add New Task</Text>
+
       <View style={styles.inputContainer}>
-        {/* <Ionicons name="person-outline" size={20} style={styles.icon} /> */}
         <TextInput
           placeholder="Title"
           placeholderTextColor="#ccc"
@@ -24,7 +49,6 @@ const TaskForm = () => {
       </View>
 
       <View style={styles.inputContainer}>
-        {/* <Ionicons name="person-outline" size={20} style={styles.icon} /> */}
         <TextInput
           placeholder="Description"
           placeholderTextColor="#ccc"
@@ -33,15 +57,47 @@ const TaskForm = () => {
       </View>
 
       <View style={styles.inputContainer}>
-        {/* <Ionicons name="person-outline" size={20} style={styles.icon} /> */}
-        <TextInput
-          placeholder="Due Date"
-          placeholderTextColor="#ccc"
-          style={styles.input}
-        />
+        <View>
+          {showPicker && (
+            <DateTimePicker
+              mode="date"
+              display="spinner"
+              value={date}
+              onChange={onChange}
+              minimumDate={Date.now()}
+              placeholderText="Select a date"
+            />
+          )}
+        </View>
+        {/* Show the formatted date in the TextInput */}
+        {!showPicker && (
+          <Pressable onPress={toggleDatePicker} style={styles.input}>
+            <TextInput
+              placeholderText="Due Date"
+              placeholderTextColor="#ccc"
+              editable={false}
+              value={getFormattedDate(date)} // Display formatted date
+              onPressIn={toggleDatePicker}
+            />
+          </Pressable>
+        )}
       </View>
 
-      {/* <Button title="Add Task" color="#6C63FF" /> */}
+      <View style={styles.pickerWrapper}>
+        <Picker
+          selectedValue={priority}
+          onValueChange={(itemValue) => setPriority(itemValue)}
+        >
+          <Picker.Item label="High" value="high" style={styles.pickerItem} />
+          <Picker.Item
+            label="Medium"
+            value="medium"
+            style={styles.pickerItem}
+          />
+          <Picker.Item label="Low" value="low" style={styles.pickerItem} />
+        </Picker>
+      </View>
+
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Add Task</Text>
       </TouchableOpacity>
@@ -51,7 +107,6 @@ const TaskForm = () => {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
@@ -62,19 +117,17 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#C3C0FA",
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
     width: "80%",
     marginBottom: 30,
   },
-  icon: {
-    marginRight: 10, // Space between icon and text input
-  },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 15,
+    color: "#6C63FF",
   },
   taskHeader: {
     fontSize: 24,
@@ -83,19 +136,32 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   button: {
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: 100,
+    width: "80%",
     height: 50,
     backgroundColor: "#6C63FF",
     borderRadius: 10,
-    marginLeft: -250,
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  pickerWrapper: {
+    borderWidth: 1,
+    borderColor: "#C3C0FA",
+    borderRadius: 8,
+    backgroundColor: "white",
+    width: "80%",
+    height: 40,
+    justifyContent: "center",
+    marginBottom: 30,
+  },
+  pickerItem: {
+    fontSize: 16,
+    height: 50,
+    color: "#6C63FF",
   },
 });
 

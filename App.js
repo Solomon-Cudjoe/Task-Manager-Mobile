@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Home from "./Screens/Home";
@@ -10,9 +11,11 @@ import Notifications from "./Screens/Notifications";
 import Calendar from "./Screens/Calendar";
 export default function App() {
   const Tab = createBottomTabNavigator();
+
   return (
     <>
       <StatusBar backgroundColor="#6C63FF" style="light" />
+
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
@@ -20,6 +23,7 @@ export default function App() {
             tabBarShowLabel: false,
             tabBarActiveTintColor: "#6C63FF",
             headerShown: false,
+            // tabBarHideOnKeyboard: true,
           }}
         >
           <Tab.Screen
@@ -72,6 +76,11 @@ export default function App() {
             name="Notifications"
             component={Notifications}
             options={{
+              tabBarBadge: 3,
+              tabBarBadgeStyle: {
+                color: "white",
+                backgroundColor: "#6C63FF",
+              },
               tabBarIcon: ({ color }) => (
                 <Ionicons
                   name="notifications-outline"
