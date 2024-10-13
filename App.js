@@ -9,6 +9,8 @@ import Profile from "./Screens/Profile";
 import TaskForm from "./Screens/TaskForm";
 import Notifications from "./Screens/Notifications";
 import Calendar from "./Screens/Calendar";
+import AppStack from "./AppStack";
+
 export default function App() {
   const Tab = createBottomTabNavigator();
 
@@ -23,7 +25,7 @@ export default function App() {
             tabBarShowLabel: false,
             tabBarActiveTintColor: "#6C63FF",
             headerShown: false,
-            // tabBarHideOnKeyboard: true,
+            tabBarHideOnKeyboard: true,
           }}
         >
           <Tab.Screen
@@ -36,7 +38,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Login"
+            name="Calendar"
             component={Calendar}
             options={{
               tabBarIcon: ({ color }) => (
@@ -58,7 +60,7 @@ export default function App() {
                   name="add-circle"
                   size={60}
                   color={color}
-                  style={{ marginTop: -50 }}
+                  style={{ marginTop: -40 }}
                 />
               ),
             }}

@@ -1,11 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView, Button } from "react-native";
 
-const Notifications = () => {
+const Notifications = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <Text>Notifications Screen</Text>
+        <Button
+          title="Login"
+          onPress={() => navigation.navigate("Login", { screen: "Login" })}
+        />
       </View>
     </SafeAreaView>
   );

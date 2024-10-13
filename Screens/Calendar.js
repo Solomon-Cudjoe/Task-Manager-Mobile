@@ -3,14 +3,20 @@ import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 
 const Calendars = () => {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState("");
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text>Calendar Screen</Text>
+        <Text style={{ fontSize: 28 }}>Calendar</Text>
 
         <Calendar
+          style={{
+            // borderWidth: 1,
+            borderColor: "gray",
+            height: 350,
+            width: 390,
+          }}
           onDayPress={(day) => {
             setSelected(day.dateString);
           }}

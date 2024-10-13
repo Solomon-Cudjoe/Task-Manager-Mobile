@@ -6,7 +6,12 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
-        <Ionicons name="search-outline" size={30} style={styles.icon} />
+        <Ionicons
+          name="search-outline"
+          size={30}
+          style={styles.icon}
+          color="#ccc"
+        />
         <TextInput style={styles.input} placeholder="Search..." />
       </View>
     </SafeAreaView>
@@ -18,8 +23,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   inputContainer: {
     flexDirection: "row",
@@ -31,7 +36,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     width: "80%",
-    marginTop: -700,
+    marginHorizontal: 40,
+    marginVertical: 60,
   },
   icon: {
     marginRight: 10, // Space between icon and text input
