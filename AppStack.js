@@ -6,12 +6,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./Screens/Login";
 import Signup from "./Screens/Signup";
 import Profile from "./Screens/Profile";
+import ForgotPassword from "./Screens/ForgotPassword";
+import ResetPassword from "./Screens/ResetPassword";
 
 const AppStack = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Profile">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen
         name="Profile"
         component={Profile}
@@ -26,7 +28,27 @@ const AppStack = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Signup" component={Signup} options={{}} />
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

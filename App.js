@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import * as SplashScreen from "expo-splash-screen";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Home from "./Screens/Home";
-import Profile from "./Screens/Profile";
 import TaskForm from "./Screens/TaskForm";
 import Notifications from "./Screens/Notifications";
 import Calendar from "./Screens/Calendar";
@@ -13,6 +14,22 @@ import AppStack from "./AppStack";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
+
+  useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        // Simulate some async tasks like loading fonts, making API calls, etc.
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Hide the splash screen once resources are ready
+        SplashScreen.hideAsync();
+      }
+    }
+
+    loadResourcesAndDataAsync();
+  }, []);
 
   return (
     <>
@@ -60,7 +77,7 @@ export default function App() {
                   name="add-circle"
                   size={60}
                   color={color}
-                  style={{ marginTop: -40 }}
+                  style={{ position: "absolute", bottom: 15 }}
                 />
               ),
             }}
